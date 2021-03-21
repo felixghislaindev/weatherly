@@ -1,28 +1,37 @@
 <template>
-    <div>
-        <w-input
-  class="mb2"
-  label="Enter your postcode"
-  label-position="inside"
-  outline
-  inner-icon-left="wi-search">
-</w-input>
-    </div>
+  <div>
+    <w-input
+      class="mb2"
+      label="Enter your postcode"
+      label-position="inside"
+      outline
+      inner-icon-left="wi-search"
+      @blur="setPostCode"
+    >
+    </w-input>
+  </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  props: {
-    msg: String,
-  },
+    emits: ['handleDisplayWeather']
 })
 export default class SearchInput extends Vue {
-  msg!: string;
+  poscode:string|undefined
+  errorMsgstring:string|undefined
+//   computed
+  setPostCode(value):void{
+      const validPostcodeRegex = /^([A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})$/gmi
+      if(validPostcodeRegex.test(value)){
+          this.poscode = value
+      } else{
+      this.errorMsgstring = 'please enter a valid postcode'
+
+      }
+  }
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

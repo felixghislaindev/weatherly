@@ -1,22 +1,22 @@
 <template>
-    <div>
-        <SearchInput/>
-        <WeatherLocationAndDate/>
-    </div>
+  <div>
+    <SearchInput />
+    <WeatherLocationAndDate />
+  </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import SearchInput from './SearchInput.vue'
-import WeatherLocationAndDate from './WeatherLocationAndDate.vue'
+import SearchInput from "./SearchInput.vue";
+import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
 
 @Options({
   props: {
     msg: String,
   },
   components: {
-      SearchInput,
-      WeatherLocationAndDate
+    SearchInput,
+    WeatherLocationAndDate,
   },
 })
 export default class WeatherGeneralInfo extends Vue {
@@ -24,6 +24,4 @@ export default class WeatherGeneralInfo extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
