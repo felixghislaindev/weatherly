@@ -2,24 +2,40 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "A Million Ads Frontend Tech Test",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "json-server --watch db.json --port 3030"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AMA-engineering/frontend.git"
-  },
-  "keywords": [],
   "author": "",
-  "license": "ISC",
+  "scripts": {
+    "api": "json-server --watch db.json --port 3030",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "json-server": "^0.16.2"
+  },
+  "devDependencies": {
+    "less": "^2.7.3",
+    "less-loader": "^4.1.0",
+    "vue-cli-plugin-ant-design": "~1.0.1"
+  },
   "bugs": {
     "url": "https://github.com/AMA-engineering/frontend/issues"
   },
   "homepage": "https://github.com/AMA-engineering/frontend#readme",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "json-server": "^0.16.2"
+  "keywords": [],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AMA-engineering/frontend.git"
+  },
+  "babel": {
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "ant-design-vue",
+          "libraryDirectory": "es",
+          "style": true
+        }
+      ]
+    ]
   }
 }
