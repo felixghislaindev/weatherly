@@ -22,10 +22,12 @@ export default class SearchInput extends Vue {
   poscode:string|undefined
   errorMsgstring:string|undefined
 //   computed
-  setPostCode(value):void{
+  setPostCode(e):void{
+      const value = e.target.value
       const validPostcodeRegex = /^([A-Z]{1,2}\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})$/gmi
       if(validPostcodeRegex.test(value)){
           this.poscode = value
+          this.$emit('handleDisplayWeather',this.poscode)
       } else{
       this.errorMsgstring = 'please enter a valid postcode'
 

@@ -4,7 +4,7 @@
       <div class="xs5 pa1">
         <div class="weather-general-info py3">
           <h2 class="title">Weatherly.</h2>
-          <WeatherGeneralInfo />
+          <WeatherGeneralInfo @handleDisplayWeatherInfo="displayWeatherInfo"/>
           <h3>16<span>&#8451;</span></h3>
         </div>
       </div>
@@ -23,18 +23,50 @@ import WeatherGeneralInfo from "./components/WeatherGeneralInfo.vue";
 import WeatherInDepthInfo from "./components/WeatherInDepthInfo.vue";
 import axios from 'axios'
 
+interface LocationInfo {
+  id: string
+  postcode: string
+  eastings: string
+  northings: string
+  nhs_ha: string
+  country: string
+  longitude: number
+  latitude: number
+}
+interface WeatherInfo {
+  id: string
+  country: string
+  coord: {
+    lon: number,
+    lat: number
+  }
+  
+}
 @Options({
   components: {
     WeatherGeneralInfo,
     WeatherInDepthInfo,
   },
+  
 })
 export default class App extends Vue {
-  locations!: Array<void>;
-  locationsWeatherInfo!: Array<void>;
+  locationsInfo!: Array<LocationInfo>;
+  locationsWeatherInfo!: Array<WeatherInfo>;
+  locationWeatherInfo!: Array<WeatherInfo>;
+  currentPostCode!:string;
+ 
+  displayWeatherInfo(postcode:string):void{
+    // get geolocation
+    const selectedLocationInfo = this.locationsInfo.filter(location => location.postcode === postcode)
+    selectedLocationInfo.forEach(location => {
+      const lon = parseFloat(location.longitude.toFixed(2))
+      const lat = parseFloat(location.latitude.toFixed(2))
+      this.locationWeatherInfo = this.locationsWeatherInfo.filter(weatherInfo => weatherInfo.coord.lon === lon && weatherInfo.coord.lat === lat)
+    })
+  }
   async setLocationsInfo():Promise<void> {
             const res = await fetch('http://localhost:3030/locations')
-            this.locations = await res.json()
+            this.locationsInfo = await res.json()
   }
   async setlocationsWeatherInfo():Promise<void> {
             const res = await fetch('http://localhost:3030/weather')

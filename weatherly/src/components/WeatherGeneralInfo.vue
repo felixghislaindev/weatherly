@@ -11,9 +11,7 @@ import SearchInput from "./SearchInput.vue";
 import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
 
 @Options({
-    props: {
-        
-    },
+   emits: ['handleDisplayWeatherInfo'],
   components: {
     SearchInput,
     WeatherLocationAndDate,
@@ -21,8 +19,9 @@ import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
 })
 export default class WeatherGeneralInfo extends Vue {
 //   methods
-    displayWeather(poscode:string):string{
-        return poscode
+    displayWeather(poscode:string):void{
+        console.log("here")
+        this.$emit('handleDisplayWeatherInfo', poscode)
     }
 }
 </script>
