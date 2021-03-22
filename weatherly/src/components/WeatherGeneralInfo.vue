@@ -1,7 +1,7 @@
 <template>
   <div>
     <SearchInput @handleDisplayWeather="displayWeather"/>
-    <WeatherLocationAndDate />
+    <WeatherLocationAndDate  :currenWeatherInfo="currenWeatherInfo"/>
   </div>
 </template>
 
@@ -9,18 +9,28 @@
 import { Options, Vue } from "vue-class-component";
 import SearchInput from "./SearchInput.vue";
 import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
+import { reactive } from 'vue'
 
 @Options({
    emits: ['handleDisplayWeatherInfo'],
+   props: {
+    weatherInfo: Object,
+  },
   components: {
     SearchInput,
     WeatherLocationAndDate,
   },
+   watch: {
+    weatherInfo(val) {
+        this.currenWeatherInfo = reactive(val[0])
+    }
+  }
 })
 export default class WeatherGeneralInfo extends Vue {
-//   methods
+//   data
+  currenWeatherInfo:Array<any>=[];
+    //   methods
     displayWeather(poscode:string):void{
-        console.log("here")
         this.$emit('handleDisplayWeatherInfo', poscode)
     }
 }

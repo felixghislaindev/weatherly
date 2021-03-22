@@ -1,18 +1,27 @@
 <template>
   <div>
-    <h2 class="weather-location"></h2>
+    <h2 class="weather-location">{{currenWeather}}</h2>
     <span class="weather-date-time"></span>
   </div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import { reactive } from 'vue'
+
 
 @Options({
-  props: {},
+  props: {
+    currenWeatherInfo: Object,
+  },
+   watch: {
+    currenWeatherInfo(val) {
+        this.currenWeather = reactive(val[0])
+    }
+  }
 })
 export default class WeatherLocationAndDate extends Vue {
-  msg!: string;
+  currenWeather: Array<any>=[];
 }
 </script>
 

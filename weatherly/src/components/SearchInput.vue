@@ -29,7 +29,7 @@ export default class SearchInput extends Vue {
           this.poscode = value
           this.$emit('handleDisplayWeather',this.poscode)
       } else{
-      this.errorMsgstring = 'please enter a valid postcode'
+      this.errorMsgstring='please enter a valid postcode'
 
       }
   }

@@ -4,13 +4,13 @@
       <div class="xs5 pa1">
         <div class="weather-general-info py3">
           <h2 class="title">Weatherly.</h2>
-          <WeatherGeneralInfo @handleDisplayWeatherInfo="displayWeatherInfo"/>
+          <WeatherGeneralInfo @handleDisplayWeatherInfo="displayWeatherInfo" :weatherInfo="locationWeatherInfo"/>
           <h3>16<span>&#8451;</span></h3>
         </div>
       </div>
       <div class="xs7 pa1">
         <div class="weather-in-depth-info py3">
-          <WeatherInDepthInfo />
+          <WeatherInDepthInfo :weatherInfo="locationWeatherInfo"/>
         </div>
       </div>
     </w-flex>
@@ -40,7 +40,6 @@ interface WeatherInfo {
     lon: number,
     lat: number
   }
-  
 }
 @Options({
   components: {
@@ -50,9 +49,9 @@ interface WeatherInfo {
   
 })
 export default class App extends Vue {
-  locationsInfo!: Array<LocationInfo>;
-  locationsWeatherInfo!: Array<WeatherInfo>;
-  locationWeatherInfo!: Array<WeatherInfo>;
+  locationsInfo: Array<LocationInfo>=[];
+  locationsWeatherInfo: Array<WeatherInfo>=[];
+  locationWeatherInfo: Array<WeatherInfo>=[];
   currentPostCode!:string;
  
   displayWeatherInfo(postcode:string):void{

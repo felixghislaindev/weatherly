@@ -13,7 +13,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   props: {
-    msg: String,
+    weatherInfo: Object,
   },
 })
 export default class WeatherInDepthInfo extends Vue {
