@@ -9,7 +9,8 @@
 import { Options, Vue } from "vue-class-component";
 import SearchInput from "./SearchInput.vue";
 import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
-import { reactive } from 'vue'
+
+
 
 @Options({
    emits: ['handleDisplayWeatherInfo'],
@@ -22,7 +23,7 @@ import { reactive } from 'vue'
   },
    watch: {
     weatherInfo(val) {
-        this.currenWeatherInfo = reactive(val[0])
+        this.currenWeatherInfo = val
     }
   }
 })

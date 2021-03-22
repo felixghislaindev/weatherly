@@ -5,7 +5,6 @@
         <div class="weather-general-info py3">
           <h2 class="title">Weatherly.</h2>
           <WeatherGeneralInfo @handleDisplayWeatherInfo="displayWeatherInfo" :weatherInfo="locationWeatherInfo"/>
-          <h3>16<span>&#8451;</span></h3>
         </div>
       </div>
       <div class="xs7 pa1">
@@ -18,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { Options, Vue, } from "vue-class-component";
 import WeatherGeneralInfo from "./components/WeatherGeneralInfo.vue";
 import WeatherInDepthInfo from "./components/WeatherInDepthInfo.vue";
 import axios from 'axios'
@@ -40,6 +39,7 @@ interface WeatherInfo {
     lon: number,
     lat: number
   }
+  
 }
 @Options({
   components: {
