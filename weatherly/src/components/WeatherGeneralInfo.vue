@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchInput />
+    <SearchInput @handleDisplayWeather="displayWeather"/>
     <WeatherLocationAndDate />
   </div>
 </template>
@@ -11,16 +11,19 @@ import SearchInput from "./SearchInput.vue";
 import WeatherLocationAndDate from "./WeatherLocationAndDate.vue";
 
 @Options({
-  props: {
-    msg: String,
-  },
+    props: {
+        
+    },
   components: {
     SearchInput,
     WeatherLocationAndDate,
   },
 })
 export default class WeatherGeneralInfo extends Vue {
-  msg!: string;
+//   methods
+    displayWeather(poscode:string):string{
+        return poscode
+    }
 }
 </script>
 

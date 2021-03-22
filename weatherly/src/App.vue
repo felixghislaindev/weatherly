@@ -21,6 +21,7 @@
 import { Options, Vue } from "vue-class-component";
 import WeatherGeneralInfo from "./components/WeatherGeneralInfo.vue";
 import WeatherInDepthInfo from "./components/WeatherInDepthInfo.vue";
+import axios from 'axios'
 
 @Options({
   components: {
@@ -28,7 +29,25 @@ import WeatherInDepthInfo from "./components/WeatherInDepthInfo.vue";
     WeatherInDepthInfo,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  locations!: Array<void>;
+  locationsWeatherInfo!: Array<void>;
+  async setLocationsInfo():Promise<void> {
+            const res = await fetch('http://localhost:3030/locations')
+            this.locations = await res.json()
+  }
+  async setlocationsWeatherInfo():Promise<void> {
+            const res = await fetch('http://localhost:3030/weather')
+            this.locationsWeatherInfo = await res.json()
+  }
+  // methods
+ async mounted()  {   
+            // requesting location data from
+await this.setLocationsInfo()
+await this.setlocationsWeatherInfo()
+              
+      }
+}
 </script>
 
 <style>
